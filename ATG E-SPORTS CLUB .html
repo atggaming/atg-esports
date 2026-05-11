@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATG E-SPORTS CLUB | The Pro Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Easy Branding */
+        :root {
+            --primary-color: #ffb300;
+            --accent-color: #ff3c00;
+            --bg-dark: #050505;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --neon-shadow: 0 0 15px rgba(255, 179, 0, 0.6);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            background: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .btn {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Animated Background Gradient */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* Header Styling */
+        header { 
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px; 
+            text-align: center; 
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        header h1 { 
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--primary-color); 
+            text-shadow: var(--neon-shadow);
+            letter-spacing: 5px;
+        }
+
+        /* Navigation */
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            padding: 15px; 
+            background: rgba(10, 10, 10, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a { 
+            text-decoration: none; 
+            color: #aaa; 
+            padding: 8px 15px; 
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover { 
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            text-shadow: var(--neon-shadow);
+        }
+
+        /* Hero Section */
+        .hero { 
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1470&auto=format&fit=crop') center/cover; 
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+        }
+
+        .hero-content h2 { 
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #ffb300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Buttons */
+        .btn { 
+            display: inline-block; 
+            margin-top: 30px; 
+            padding: 18px 45px; 
+            background: var(--primary-color); 
+            color: black; 
+            text-decoration: none; 
+            border-radius: 0; /* Sharp edges for gaming look */
+            font-weight: 900; 
+            transform: skew(-15deg);
+            transition: 0.3s;
+        }
+
+        .btn span { 
+            display: inline-block;
+            transform: skew(15deg); 
+        }
+
+        .btn:hover { 
+            background: #fff;
+            box-shadow: 0 0 30px var(--primary-color);
+            transform: skew(-15deg) scale(1.1);
+        }
+
+        /* Cards Section */
+        .section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .section-title { 
+            text-align: center; 
+            font-size: 2.5rem; 
+            margin-bottom: 50px; 
+            color: #fff;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            width: 80px; height: 4px; background: var(--primary-color);
+            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+        }
+
+        .cards { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .card { 
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px; 
+            border-radius: 5px;
+            transition: 0.4s; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary-color);
+            transition: 0.4s;
+        }
+
+        .card:hover { 
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 { color: var(--primary-color); margin-bottom: 15px; }
+
+        /* Tournament Card Special */
+        .tournament-card {
+            border-right: 1px solid var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .prize-tag {
+            font-size: 1.5rem;
+            color: #00ff88;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Schedule Table */
+        .schedule-container { 
+            background: #111; 
+            border: 1px solid var(--primary-color);
+            padding: 2px;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        table th { background: var(--primary-color); color: #000; padding: 20px; }
+        table td { padding: 15px; text-align: center; border-bottom: 1px solid #222; }
+        tr:hover { background: rgba(255, 179, 0, 0.1); }
+
+        /* Footer & Socials */
+        footer { 
+            background: #000; padding: 60px 20px; text-align: center; 
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .contact-buttons { 
+            margin: 30px 0; 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+        }
+
+        .contact-buttons a { 
+            text-decoration: none; 
+            color: white; 
+            padding: 12px 25px; 
+            border: 1px solid var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .contact-buttons a:hover { 
+            background: var(--primary-color); 
+            color: #000;
+            box-shadow: var(--neon-shadow);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); }
+
+        @media (max-width: 768px) { 
+            .hero h2 { font-size: 2.5rem; }
+            nav { gap: 5px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ATG E-SPORTS</h1>
+        <p style="letter-spacing: 3px; font-weight: bold; color: #888;">BATTLEGROUNDS OF BANGLADESH</p>
+    </header>
+
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="#scrims">SCRIMS</a>
+        <a href="#tournaments">TOURNEYS</a>
+        <a href="#schedule">SCHEDULE</a>
+        <a href="#contact">JOIN US</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>DOMINATE THE FIELD</h2>
+            <p style="font-size: 20px; color: #ccc;">Where Legends Are Born and Champions Play.</p>
+            <a href="#" class="btn"><span>REGISTER NOW</span></a>
+        </div>
+    </section>
+
+    <section class="section" id="scrims">
+        <h2 class="section-title">PRO SCRIM FEATURES</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>ELITE ROOMS</h3>
+                <p>High-tier lobby with pro teams from across Bangladesh. No lag, pure skill.</p>
+            </div>
+            <div class="card">
+                <h3>INSTANT ACCESS</h3>
+                <p>Automatic ID-Pass delivery via our dedicated discord and whatsapp bots.</p>
+            </div>
+            <div class="card">
+                <h3>ANTI-CHEAT</h3>
+                <p>Advanced monitoring to ensure 100% fair play. Cheaters have no place here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tournaments" style="background: rgba(255, 60, 0, 0.05);">
+        <h2 class="section-title">MAJOR TOURNAMENTS</h2>
+        <div class="cards">
+            <div class="card tournament-card">
+                <span style="color: var(--accent-color); font-weight: bold;">LIVE REGISTRATION</span>
+                <h3>SQUAD CLASH PRO</h3>
+                <p>25 May 2026 • 4PM Start</p>
+                <span class="prize-tag">৳ 5,000 PRIZE</span>
+            </div>
+            <div class="card tournament-card">
+                <span style="color: var(--accent-color); font-weight: bold;">UPCOMING</span>
+                <h3>DASH RUSH DUO</h3>
+                <p>30 May 2026 • 9PM Start</p>
+                <span class="prize-tag">৳ 3,000 PRIZE</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="schedule">
+        <h2 class="section-title">BATTLE SCHEDULE</h2>
+        <div class="schedule-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>DAY</th>
+                        <th>TIME (BST)</th>
+                        <th>BATTLE MODE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FRIDAY</td>
+                        <td>08:00 PM</td>
+                        <td>SQUAD (BERMUDA)</td>
+                    </tr>
+                    <tr>
+                        <td>SATURDAY</td>
+                        <td>09:00 PM</td>
+                        <td>DUO (PURGATORY)</td>
+                    </tr>
+                    <tr>
+                        <td>SUNDAY</td>
+                        <td>08:30 PM</td>
+                        <td>SQUAD (ALL MAPS)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="color: var(--primary-color); margin-bottom: 20px;">BECOME A PART OF THE SQUAD</h2>
+        <div class="contact-buttons">
+            <a href="#">WHATSAPP</a>
+            <a href="#">TELEGRAM</a>
+            <a href="#">FACEBOOK</a>
+        </div>
+        <p style="font-size: 14px; margin-top: 40px; opacity: 0.5;">
+            &copy; 2026 ATG E-SPORTS CLUB | DESIGNED FOR ELITE GAMERS
+        </p>
+    </footer>
+
+</body>
+</html>
